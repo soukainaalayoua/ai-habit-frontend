@@ -21,3 +21,5 @@ VITE_API_BASE_URL=http://backend-ai-habits-production.up.railway.app/api
 # 2. Copiez la ligne VITE_API_BASE_URL ci-dessus
 
 # 3. Redéployez sur Vercel
+
+

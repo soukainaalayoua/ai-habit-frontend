@@ -23,12 +23,12 @@ export default defineConfig({
     host: true,
     proxy: {
       // Proxy pour le développement local
-      '/api': {
-        target: 'https://backend-ai-habits-production.up.railway.app',
+      "/api": {
+        target: "https://backend-ai-habits-production.up.railway.app",
         changeOrigin: true,
         secure: true,
-        rewrite: (path) => path.replace(/^\/api/, '/api')
-      }
-    }
+        rewrite: (path) => path.replace(/^\/api/, "/api"),
+      },
+    },
   },
 });
