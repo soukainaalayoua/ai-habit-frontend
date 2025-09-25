@@ -5,7 +5,6 @@ import tailwindcss from "@tailwindcss/vite";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  
   build: {
     outDir: "dist",
     sourcemap: false,
@@ -22,5 +21,14 @@ export default defineConfig({
   server: {
     port: 5173,
     host: true,
+    proxy: {
+      // Proxy pour le développement local
+      '/api': {
+        target: 'https://backend-ai-habits-production.up.railway.app',
+        changeOrigin: true,
+        secure: true,
+        rewrite: (path) => path.replace(/^\/api/, '/api')
+      }
+    }
   },
 });

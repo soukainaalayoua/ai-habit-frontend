@@ -1,11 +1,24 @@
 import axios from "axios";
 
-const baseURL =
-  import.meta.env.VITE_API_BASE_URL || "http://localhost:3000/api";
+// Configuration pour contourner les problèmes CORS
+const isProduction = import.meta.env.PROD;
+const railwayURL = "https://backend-ai-habits-production.up.railway.app/api";
+
+// Utiliser un proxy CORS en production
+const baseURL = isProduction 
+  ? `https://api.allorigins.win/raw?url=${encodeURIComponent(railwayURL)}`
+  : (import.meta.env.VITE_API_BASE_URL || "http://localhost:3000/api");
+
 console.log("API Base URL:", baseURL);
+console.log("Environment:", isProduction ? "production" : "development");
 
 const api = axios.create({
   baseURL,
+  withCredentials: false, // Désactiver les credentials pour éviter les problèmes CORS
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  timeout: 15000, // Timeout de 15 secondes pour le proxy
 });
 
 // Request interceptor to attach token automatically
