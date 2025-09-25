@@ -53,8 +53,13 @@ export default function Register() {
       setRegistrationSuccess(true);
       setRegisteredEmail(formData.email);
 
+      // Afficher le code de vérification si disponible
+      if (response.data.verificationCode) {
+        alert(`Code de vérification: ${response.data.verificationCode}\n\nCopiez ce code pour vérifier votre compte.`);
+      }
+
       // Redirect to verification page immediately
-      navigate(`/verify-email?email=${encodeURIComponent(formData.email)}`);
+      navigate(`/verify-email?email=${encodeURIComponent(formData.email)}&code=${response.data.verificationCode || ''}`);
 
       setFormData({
         firstName: "",
