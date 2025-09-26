@@ -8,7 +8,7 @@ export default function Login() {
   const navigate = useNavigate();
   const { login } = useAuth();
   const isMountedRef = useRef(true);
-  
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -34,7 +34,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!isMountedRef.current) return;
-    
+
     setLoading(true);
     setError("");
 

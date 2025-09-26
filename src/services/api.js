@@ -2,11 +2,11 @@ import axios from "axios";
 
 // Configuration pour contourner les problèmes CORS
 const isProduction = import.meta.env.PROD;
-const railwayURL = "https://backend-ai-habits-production.up.railway.app/api";
+const renderURL = "https://ai-habits-backend.onrender.com/api";
 
-// Utiliser directement Railway en production (CORS configuré côté backend)
+// Utiliser Render.com en production (plus fiable que Railway)
 const baseURL = isProduction
-  ? railwayURL
+  ? renderURL
   : import.meta.env.VITE_API_BASE_URL || "http://localhost:3000/api";
 
 console.log("API Base URL:", baseURL);

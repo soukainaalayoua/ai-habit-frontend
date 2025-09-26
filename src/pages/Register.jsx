@@ -8,7 +8,7 @@ export default function Register() {
   const navigate = useNavigate();
   const { login } = useAuth();
   const isMountedRef = useRef(true);
-  
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -38,7 +38,7 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!isMountedRef.current) return;
-    
+
     setLoading(true);
     setError("");
 
