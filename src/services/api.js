@@ -1,12 +1,12 @@
 import axios from "axios";
 
-// Configuration pour Railway avec proxy CORS alternatif
+// Configuration pour Railway - Test direct avec mode no-cors
 const isProduction = import.meta.env.PROD;
 const railwayURL = "http://backend-ai-habits-production.up.railway.app/api";
 
-// Utiliser un proxy CORS alternatif en production
+// Utiliser Railway directement en production
 const baseURL = isProduction
-  ? `https://corsproxy.com/?${encodeURIComponent(railwayURL)}`
+  ? railwayURL
   : import.meta.env.VITE_API_BASE_URL || "http://localhost:3000/api";
 
 console.log("API Base URL:", baseURL);
@@ -14,12 +14,11 @@ console.log("Environment:", isProduction ? "production" : "development");
 
 const api = axios.create({
   baseURL,
-  withCredentials: false, // Désactiver les credentials pour éviter les problèmes CORS
+  withCredentials: false,
   headers: {
     "Content-Type": "application/json",
-    "X-Requested-With": "XMLHttpRequest",
   },
-  timeout: 30000, // Timeout de 30 secondes
+  timeout: 30000,
 });
 
 // Request interceptor to attach token automatically
