@@ -1,12 +1,12 @@
 import axios from "axios";
 
-// Configuration pour Railway - HTTP avec proxy CORS alternatif
+// Configuration pour Railway - Test direct après redéploiement forcé
 const isProduction = import.meta.env.PROD;
 const railwayURL = "http://backend-ai-habits-production.up.railway.app/api";
 
-// Utiliser un proxy CORS alternatif qui fonctionne
+// Utiliser Railway directement après redéploiement forcé
 const baseURL = isProduction
-  ? `https://cors.bridged.cc/${railwayURL}`
+  ? railwayURL
   : import.meta.env.VITE_API_BASE_URL || "http://localhost:3000/api";
 
 console.log("API Base URL:", baseURL);
