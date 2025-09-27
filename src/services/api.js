@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Configuration pour Railway - URL directe
 const isProduction = import.meta.env.PROD;
-const railwayURL = "http://backend-ai-habits-production.up.railway.app/api";
+const railwayURL = "https://backend-ai-habits-production.up.railway.app/api";
 
 // Utiliser Railway directement
 const baseURL = isProduction
