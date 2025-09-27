@@ -1,12 +1,12 @@
 import axios from "axios";
 
-// Configuration pour contourner les problèmes CORS
+// Configuration pour Railway
 const isProduction = import.meta.env.PROD;
-const herokuURL = "https://ai-habits-backend.herokuapp.com/api";
+const railwayURL = "http://backend-ai-habits-production.up.railway.app/api";
 
-// Utiliser Heroku en production (plus fiable que Railway)
+// Utiliser Railway en production
 const baseURL = isProduction
-  ? herokuURL
+  ? railwayURL
   : import.meta.env.VITE_API_BASE_URL || "http://localhost:3000/api";
 
 console.log("API Base URL:", baseURL);
