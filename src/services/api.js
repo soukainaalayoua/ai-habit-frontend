@@ -1,12 +1,12 @@
 import axios from "axios";
 
-// Configuration pour Railway avec proxy CORS temporaire
+// Configuration pour Railway avec proxy CORS alternatif
 const isProduction = import.meta.env.PROD;
 const railwayURL = "http://backend-ai-habits-production.up.railway.app/api";
 
-// Utiliser un proxy CORS en production pour contourner le problème Railway
+// Utiliser un proxy CORS alternatif en production
 const baseURL = isProduction
-  ? `https://cors-anywhere.herokuapp.com/${railwayURL}`
+  ? `https://api.allorigins.win/raw?url=${encodeURIComponent(railwayURL)}`
   : import.meta.env.VITE_API_BASE_URL || "http://localhost:3000/api";
 
 console.log("API Base URL:", baseURL);
