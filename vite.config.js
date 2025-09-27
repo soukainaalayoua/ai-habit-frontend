@@ -24,7 +24,7 @@ export default defineConfig({
     proxy: {
       // Proxy pour le développement local
       "/api": {
-        target: "https://backend-ai-habits-production.up.railway.app",
+        target: "http://backend-ai-habits-production.up.railway.app",
         changeOrigin: true,
         secure: true,
         rewrite: (path) => path.replace(/^\/api/, "/api"),
