@@ -27,7 +27,12 @@ export default function Login() {
 
   const handleChange = (e) => {
     if (!isMountedRef.current) return;
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    console.log(`Input ${name} changed to:`, value); // Debug log
+    setFormData(prevFormData => ({
+      ...prevFormData,
+      [name]: value
+    }));
     setError(""); // Clear error when user types
   };
 
