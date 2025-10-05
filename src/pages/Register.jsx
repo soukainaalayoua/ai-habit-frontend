@@ -32,10 +32,10 @@ export default function Register() {
   const handleChange = (e) => {
     console.log("handleChange called with:", e.target.name, e.target.value);
     const { name, value } = e.target;
-    setFormData(prevFormData => {
+    setFormData((prevFormData) => {
       const newFormData = {
         ...prevFormData,
-        [name]: value
+        [name]: value,
       };
       console.log("New formData:", newFormData);
       return newFormData;
@@ -45,8 +45,7 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!isMountedRef.current) return;
-
+    console.log("Form submitted with data:", formData);
     setLoading(true);
     setError("");
 
@@ -215,7 +214,10 @@ export default function Register() {
                     defaultValue={formData.firstName}
                     onChange={(e) => {
                       console.log("firstName input changed:", e.target.value);
-                      setFormData(prev => ({ ...prev, firstName: e.target.value }));
+                      setFormData((prev) => ({
+                        ...prev,
+                        firstName: e.target.value,
+                      }));
                     }}
                     className="w-full px-4 py-3 rounded-xl bg-white/20 border border-white/30 text-white placeholder-gray-300 focus:ring-2 focus:ring-fuchsia-500 focus:border-transparent outline-none transition duration-200"
                     placeholder="First name"
@@ -234,8 +236,11 @@ export default function Register() {
                     type="text"
                     autoComplete="family-name"
                     required
-                    value={formData.lastName}
-                    onChange={handleChange}
+                    defaultValue={formData.lastName}
+                    onChange={(e) => {
+                      console.log("lastName input changed:", e.target.value);
+                      setFormData(prev => ({ ...prev, lastName: e.target.value }));
+                    }}
                     className="w-full px-4 py-3 rounded-xl bg-white/20 border border-white/30 text-white placeholder-gray-300 focus:ring-2 focus:ring-fuchsia-500 focus:border-transparent outline-none transition duration-200"
                     placeholder="Last name"
                   />
@@ -259,8 +264,11 @@ export default function Register() {
                   type="email"
                   autoComplete="email"
                   required
-                  value={formData.email}
-                  onChange={handleChange}
+                  defaultValue={formData.email}
+                  onChange={(e) => {
+                    console.log("email input changed:", e.target.value);
+                    setFormData(prev => ({ ...prev, email: e.target.value }));
+                  }}
                   className="w-full px-4 py-3 rounded-xl bg-white/20 border border-white/30 text-white placeholder-gray-300 focus:ring-2 focus:ring-fuchsia-500 focus:border-transparent outline-none transition duration-200"
                   placeholder="Enter your email"
                 />
@@ -284,8 +292,11 @@ export default function Register() {
                     type={showPassword ? "text" : "password"}
                     autoComplete="new-password"
                     required
-                    value={formData.password}
-                    onChange={handleChange}
+                    defaultValue={formData.password}
+                    onChange={(e) => {
+                      console.log("password input changed:", e.target.value);
+                      setFormData(prev => ({ ...prev, password: e.target.value }));
+                    }}
                     className="w-full px-4 py-3 rounded-xl bg-white/20 border border-white/30 text-white placeholder-gray-300 focus:ring-2 focus:ring-fuchsia-500 focus:border-transparent outline-none transition duration-200 pr-12"
                     placeholder="Create a password"
                   />
@@ -352,8 +363,11 @@ export default function Register() {
                   type="password"
                   autoComplete="new-password"
                   required
-                  value={formData.confirmPassword}
-                  onChange={handleChange}
+                  defaultValue={formData.confirmPassword}
+                  onChange={(e) => {
+                    console.log("confirmPassword input changed:", e.target.value);
+                    setFormData(prev => ({ ...prev, confirmPassword: e.target.value }));
+                  }}
                   className="w-full px-4 py-3 rounded-xl bg-white/20 border border-white/30 text-white placeholder-gray-300 focus:ring-2 focus:ring-fuchsia-500 focus:border-transparent outline-none transition duration-200"
                   placeholder="Confirm your password"
                 />
