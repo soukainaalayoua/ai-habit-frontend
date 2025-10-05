@@ -239,7 +239,10 @@ export default function Register() {
                     defaultValue={formData.lastName}
                     onChange={(e) => {
                       console.log("lastName input changed:", e.target.value);
-                      setFormData(prev => ({ ...prev, lastName: e.target.value }));
+                      setFormData((prev) => ({
+                        ...prev,
+                        lastName: e.target.value,
+                      }));
                     }}
                     className="w-full px-4 py-3 rounded-xl bg-white/20 border border-white/30 text-white placeholder-gray-300 focus:ring-2 focus:ring-fuchsia-500 focus:border-transparent outline-none transition duration-200"
                     placeholder="Last name"
@@ -267,7 +270,7 @@ export default function Register() {
                   defaultValue={formData.email}
                   onChange={(e) => {
                     console.log("email input changed:", e.target.value);
-                    setFormData(prev => ({ ...prev, email: e.target.value }));
+                    setFormData((prev) => ({ ...prev, email: e.target.value }));
                   }}
                   className="w-full px-4 py-3 rounded-xl bg-white/20 border border-white/30 text-white placeholder-gray-300 focus:ring-2 focus:ring-fuchsia-500 focus:border-transparent outline-none transition duration-200"
                   placeholder="Enter your email"
@@ -295,7 +298,10 @@ export default function Register() {
                     defaultValue={formData.password}
                     onChange={(e) => {
                       console.log("password input changed:", e.target.value);
-                      setFormData(prev => ({ ...prev, password: e.target.value }));
+                      setFormData((prev) => ({
+                        ...prev,
+                        password: e.target.value,
+                      }));
                     }}
                     className="w-full px-4 py-3 rounded-xl bg-white/20 border border-white/30 text-white placeholder-gray-300 focus:ring-2 focus:ring-fuchsia-500 focus:border-transparent outline-none transition duration-200 pr-12"
                     placeholder="Create a password"
@@ -365,8 +371,14 @@ export default function Register() {
                   required
                   defaultValue={formData.confirmPassword}
                   onChange={(e) => {
-                    console.log("confirmPassword input changed:", e.target.value);
-                    setFormData(prev => ({ ...prev, confirmPassword: e.target.value }));
+                    console.log(
+                      "confirmPassword input changed:",
+                      e.target.value
+                    );
+                    setFormData((prev) => ({
+                      ...prev,
+                      confirmPassword: e.target.value,
+                    }));
                   }}
                   className="w-full px-4 py-3 rounded-xl bg-white/20 border border-white/30 text-white placeholder-gray-300 focus:ring-2 focus:ring-fuchsia-500 focus:border-transparent outline-none transition duration-200"
                   placeholder="Confirm your password"

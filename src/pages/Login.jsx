@@ -26,20 +26,22 @@ export default function Login() {
   }, []);
 
   const handleChange = (e) => {
-    if (!isMountedRef.current) return;
+    console.log("handleChange called with:", e.target.name, e.target.value);
     const { name, value } = e.target;
-    console.log(`Input ${name} changed to:`, value); // Debug log
-    setFormData(prevFormData => ({
-      ...prevFormData,
-      [name]: value
-    }));
-    setError(""); // Clear error when user types
+    setFormData(prevFormData => {
+      const newFormData = {
+        ...prevFormData,
+        [name]: value
+      };
+      console.log("New formData:", newFormData);
+      return newFormData;
+    });
+    setError("");
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!isMountedRef.current) return;
-
+    console.log("Login form submitted with data:", formData);
     setLoading(true);
     setError("");
 
@@ -139,8 +141,11 @@ export default function Login() {
                   type="email"
                   autoComplete="email"
                   required
-                  value={formData.email}
-                  onChange={handleChange}
+                  defaultValue={formData.email}
+                  onChange={(e) => {
+                    console.log("email input changed:", e.target.value);
+                    setFormData(prev => ({ ...prev, email: e.target.value }));
+                  }}
                   className="w-full px-4 py-3 rounded-xl bg-white/20 border border-white/30 text-white placeholder-gray-300 focus:ring-2 focus:ring-fuchsia-500 focus:border-transparent outline-none transition duration-200"
                   placeholder="Enter your email"
                 />
@@ -164,8 +169,11 @@ export default function Login() {
                     type={showPassword ? "text" : "password"}
                     autoComplete="current-password"
                     required
-                    value={formData.password}
-                    onChange={handleChange}
+                    defaultValue={formData.password}
+                    onChange={(e) => {
+                      console.log("password input changed:", e.target.value);
+                      setFormData(prev => ({ ...prev, password: e.target.value }));
+                    }}
                     className="w-full px-4 py-3 rounded-xl bg-white/20 border border-white/30 text-white placeholder-gray-300 focus:ring-2 focus:ring-fuchsia-500 focus:border-transparent outline-none transition duration-200 pr-12"
                     placeholder="Enter your password"
                   />
