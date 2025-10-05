@@ -30,14 +30,17 @@ export default function Register() {
   }, []);
 
   const handleChange = (e) => {
-    if (!isMountedRef.current) return;
+    console.log("handleChange called with:", e.target.name, e.target.value);
     const { name, value } = e.target;
-    console.log(`Input ${name} changed to:`, value); // Debug log
-    setFormData(prevFormData => ({
-      ...prevFormData,
-      [name]: value
-    }));
-    setError(""); // Clear error when user types
+    setFormData(prevFormData => {
+      const newFormData = {
+        ...prevFormData,
+        [name]: value
+      };
+      console.log("New formData:", newFormData);
+      return newFormData;
+    });
+    setError("");
   };
 
   const handleSubmit = async (e) => {
@@ -209,8 +212,11 @@ export default function Register() {
                     type="text"
                     autoComplete="given-name"
                     required
-                    value={formData.firstName}
-                    onChange={handleChange}
+                    defaultValue={formData.firstName}
+                    onChange={(e) => {
+                      console.log("firstName input changed:", e.target.value);
+                      setFormData(prev => ({ ...prev, firstName: e.target.value }));
+                    }}
                     className="w-full px-4 py-3 rounded-xl bg-white/20 border border-white/30 text-white placeholder-gray-300 focus:ring-2 focus:ring-fuchsia-500 focus:border-transparent outline-none transition duration-200"
                     placeholder="First name"
                   />
