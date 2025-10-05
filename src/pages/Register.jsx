@@ -29,6 +29,11 @@ export default function Register() {
     };
   }, []);
 
+  // Debug loading state changes
+  useEffect(() => {
+    console.log("Loading state changed to:", loading);
+  }, [loading]);
+
   const handleChange = (e) => {
     console.log("handleChange called with:", e.target.name, e.target.value);
     const { name, value } = e.target;
@@ -51,19 +56,17 @@ export default function Register() {
 
     // Validate passwords match
     if (formData.password !== formData.confirmPassword) {
-      if (isMountedRef.current) {
-        setError("Passwords do not match");
-        setLoading(false);
-      }
+      console.log("Passwords don't match, setting loading to false");
+      setError("Passwords do not match");
+      setLoading(false);
       return;
     }
 
     // Validate password length
     if (formData.password.length < 8) {
-      if (isMountedRef.current) {
-        setError("Password must be at least 8 characters long");
-        setLoading(false);
-      }
+      console.log("Password too short, setting loading to false");
+      setError("Password must be at least 8 characters long");
+      setLoading(false);
       return;
     }
 
@@ -74,6 +77,9 @@ export default function Register() {
 
       // Check if component is still mounted before updating state
       if (isMountedRef.current) {
+        console.log("Registration successful, setting loading to false");
+        setLoading(false);
+        
         // Registration successful - redirect to verification page
         setRegistrationSuccess(true);
         setRegisteredEmail(formData.email);
@@ -91,6 +97,7 @@ export default function Register() {
       }
     } catch (err) {
       console.error("Registration error:", err);
+      console.log("Setting loading to false after error");
       if (isMountedRef.current) {
         if (err.response?.data?.errors) {
           setError(err.response.data.errors.join(", "));
@@ -102,6 +109,7 @@ export default function Register() {
         }
       }
     } finally {
+      console.log("Finally block: setting loading to false");
       if (isMountedRef.current) {
         setLoading(false);
       }
@@ -400,6 +408,7 @@ export default function Register() {
                 whileTap={{ scale: 0.98 }}
                 type="submit"
                 disabled={loading}
+                onClick={() => console.log("Button clicked, loading state:", loading)}
                 className="w-full flex justify-center py-3 px-4 rounded-xl bg-gradient-to-r from-fuchsia-500 to-violet-600 text-white font-semibold shadow-lg hover:shadow-fuchsia-500/40 transition-all duration-300 hover:-translate-y-0.5 disabled:opacity-50"
               >
                 {loading ? (
