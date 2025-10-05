@@ -1,16 +1,10 @@
 import axios from "axios";
 
-// Configuration pour Railway - URL directe
-const isProduction = import.meta.env.PROD;
-const railwayURL = "https://backend-ai-habits-production.up.railway.app/api";
-
-// Utiliser Railway directement
-const baseURL = isProduction
-  ? railwayURL
-  : import.meta.env.VITE_API_BASE_URL || "http://localhost:3000/api";
+// Configuration pour développement local uniquement
+const baseURL = "http://localhost:3000/api";
 
 console.log("API Base URL:", baseURL);
-console.log("Environment:", isProduction ? "production" : "development");
+console.log("Environment: development local");
 
 const api = axios.create({
   baseURL,
